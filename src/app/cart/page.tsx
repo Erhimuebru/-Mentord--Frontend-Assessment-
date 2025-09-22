@@ -13,7 +13,7 @@ export default function Cart() {
   const total = items.reduce((s, i) => s + i.product.price * i.qty, 0)
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 mt-20 text-[#0c132c]">
+    <div className="max-w-7xl mx-auto px-4 py-8 mt-24 text-[#0c132c]">
       <h2 className="text-2xl font-semibold mb-6">Your Cart</h2>
 
       {items.length === 0 ? (
@@ -44,31 +44,42 @@ export default function Cart() {
                 </div>
               </div>
 
-              {/* Actions */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                <div className="flex items-center border rounded text-[#0c132c]">
-                  <button
-                    className="px-3 cursor-pointer"
-                    onClick={() => dispatch(decrementQty(product.id))}
-                  >
-                    -
-                  </button>
-                  <div className="px-3">{qty}</div>
-                  <button
-                    className="px-3 cursor-pointer"
-                    onClick={() => dispatch(addToCart(product))}
-                  >
-                    +
-                  </button>
-                </div>
+{/* Actions */}
+<div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+  {/* Quantity Control */}
+  <div className="flex items-center border rounded-lg overflow-hidden">
+    <button
+      className={`px-4 py-2 text-lg font-bold transition ${
+        qty === 1
+          ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+          : "bg-gray-200 hover:bg-gray-300 text-[#0c132c] cursor-pointer"
+      }`}
+      onClick={() => qty > 1 && dispatch(decrementQty(product.id))}
+      disabled={qty === 1}
+    >
+      -
+    </button>
+    <div className="px-5 py-2 text-lg font-semibold bg-white text-[#0c132c]">
+      {qty}
+    </div>
+    <button
+      className="px-4 py-2 text-lg font-bold bg-gray-200 hover:bg-gray-300 text-[#0c132c] transition cursor-pointer"
+      onClick={() => dispatch(addToCart(product))}
+    >
+      +
+    </button>
+  </div>
 
-                <button
-                  className="text-red-500 text-sm"
-                  onClick={() => dispatch(removeFromCart(product.id))}
-                >
-                  Remove
-                </button>
-              </div>
+  {/* Remove button */}
+  <button
+    className="text-red-500 text-sm hover:underline"
+    onClick={() => dispatch(removeFromCart(product.id))}
+  >
+    Remove
+  </button>
+</div>
+
+
             </div>
           ))}
 

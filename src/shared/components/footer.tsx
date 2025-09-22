@@ -30,6 +30,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start space-y-8 lg:space-y-0">
             {/* Logo and Socials */}
+
             <div className="flex gap-2">
               <h2 className="text-xl sm:text-3xl font-bold mb-4 font-epilogue">
               Blessedstore
@@ -76,7 +77,7 @@ const Footer = () => {
 
   <ul className="flex flex-col space-y-2 text-[16px] font-nunito text-white lg:hidden">
     <li className="mt-2">
-      <Link href="/#">Home</Link>
+      <Link href="/">Home</Link>
     </li>
     <li className="pt-2">
       <Link href="/products">Products</Link>
@@ -120,15 +121,15 @@ const Footer = () => {
   <li>
     <ul className="flex gap-8">
       <li>
-        <Link href="#">Home</Link>
+        <Link href="/">Home</Link>
       </li>
       <li>
-        <Link href="#">Products</Link>
+        <Link href="/products">Products</Link>
       </li>
     </ul>
   </li>
       <li>
-        <Link href="#">Cart</Link>
+        <Link href="/cart">Cart</Link>
       </li>
    
      
