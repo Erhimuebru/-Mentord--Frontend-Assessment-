@@ -44,7 +44,7 @@ export default function Products() {
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto px-4 py-8 mt-24">
+      <div className="max-w-7xl mx-auto px-4 py-8 mt-24 text-[#0c132c]">
         <h2 className="text-2xl font-semibold mb-4"> All Products</h2>
 
         <div className="space-y-12">

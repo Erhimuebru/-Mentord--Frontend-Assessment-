@@ -13,39 +13,39 @@ export default function Cart() {
   const total = items.reduce((s, i) => s + i.product.price * i.qty, 0)
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 mt-20">
+    <div className="max-w-7xl mx-auto px-4 py-8 mt-20 text-[#0c132c]">
       <h2 className="text-2xl font-semibold mb-6">Your Cart</h2>
 
       {items.length === 0 ? (
-        <div className="text-gray-200">Your cart is empty.</div>
+        <div className="text-gray-400">Your cart is empty.</div>
       ) : (
         <div className="space-y-4">
           {items.map(({ product, qty }) => (
             <div
               key={product.id}
-              className="flex items-center justify-between bg-white p-4 rounded shadow"
+              className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white p-4 rounded shadow"
             >
+              {/* Product Info */}
               <div className="flex items-center gap-4">
                 <Image
                   src={product.image}
                   alt={product.title}
                   width={60}
                   height={60}
-               
                   className="w-16 h-16 object-contain"
                 />
                 <div>
-                  <div className="font-medium text-[#0c132c]">{product.title}</div>
+                  <div className="font-medium text-[#0c132c] line-clamp-2">
+                    {product.title}
+                  </div>
                   <div className="text-sm font-semibold text-gray-500">
-                    ₦
-                    {product.price.toLocaleString('en-NG', {
-                      minimumFractionDigits: 2,
-                    })}
+                    ₦{product.price.toLocaleString('en-NG', { minimumFractionDigits: 2 })}
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
+              {/* Actions */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
                 <div className="flex items-center border rounded text-[#0c132c]">
                   <button
                     className="px-3 cursor-pointer"
@@ -63,7 +63,7 @@ export default function Cart() {
                 </div>
 
                 <button
-                  className="text-red-500"
+                  className="text-red-500 text-sm"
                   onClick={() => dispatch(removeFromCart(product.id))}
                 >
                   Remove
@@ -72,22 +72,22 @@ export default function Cart() {
             </div>
           ))}
 
-          <div className="flex items-center justify-between mt-4">
+          {/* Total + Actions */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-6">
             <div>
               <div className="text-gray-500">Total</div>
               <div className="text-2xl font-bold">
-                ₦
-                {total.toLocaleString('en-NG', { minimumFractionDigits: 2 })}
+                ₦{total.toLocaleString('en-NG', { minimumFractionDigits: 2 })}
               </div>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
               <button
-                className="px-4 py-2 bg-gray-200 rounded text-red-500 cursor-pointer"
+                className="px-4 py-2 bg-gray-200 rounded text-red-500 cursor-pointer w-full sm:w-auto"
                 onClick={() => setShowModal(true)}
               >
                 Clear Cart
               </button>
-              <button className="px-4 py-2 bg-indigo-600 text-white rounded cursor-pointer">
+              <button className="px-4 py-2 bg-indigo-600 text-white rounded cursor-pointer w-full sm:w-auto">
                 Checkout
               </button>
             </div>
@@ -97,8 +97,8 @@ export default function Cart() {
 
       {/* Confirmation Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="bg-white rounded-lg p-6 w-[90%] max-w-md shadow-lg">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
             <h3 className="text-lg font-semibold mb-4 text-[#0c132c]">
               Clear Cart?
             </h3>
@@ -106,7 +106,7 @@ export default function Cart() {
               Are you sure you want to clear all items from your cart? This
               action cannot be undone.
             </p>
-            <div className="flex justify-end gap-3">
+            <div className="flex flex-col sm:flex-row justify-end gap-3">
               <button
                 className="px-4 py-2 bg-gray-200 rounded cursor-pointer text-[#0c132c]"
                 onClick={() => setShowModal(false)}

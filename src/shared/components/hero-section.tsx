@@ -43,7 +43,7 @@ export function HeroSection() {
   const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length)
 
   return (
-    <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-12 -mt-16 sm:mt-0">
+    <section className="relative min-h-[70vh] md:min-h-[80vh] pt-20 sm:pt-0 flex items-center justify-center px-4 sm:px-6 md:px-12 bg-[#0c132c] text-[#fff]">
       <div className="max-w-7xl mx-auto w-full">
         <div className="relative overflow-hidden">
           {/* Slides wrapper */}
@@ -68,7 +68,7 @@ export function HeroSection() {
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
                     <Link
                       href="/products"
-                      className="inline-flex items-center space-x-2 px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base bg-foreground text-background rounded-md hover:bg-foreground/90 transition-colors"
+                      className="inline-flex items-center space-x-2 px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base bg-[#fff] text-[#0c132c] rounded-md hover:bg-foreground/90 transition-colors"
                     >
                       <span>{slide.buttonText}</span>
                       <ArrowRight className="w-4 h-4" />
@@ -83,7 +83,7 @@ export function HeroSection() {
         {/* Prev button */}
         <button
           onClick={prevSlide}
-          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-1 sm:p-2 rounded-full bg-background/80 backdrop-blur-sm border hover:bg-background transition-colors"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-1 sm:p-2 rounded-full bg-transparent backdrop-blur-sm border hover:bg-background transition-colors"
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -92,7 +92,7 @@ export function HeroSection() {
         {/* Next button */}
         <button
           onClick={nextSlide}
-          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-1 sm:p-2 rounded-full bg-background/80 backdrop-blur-sm border hover:bg-background transition-colors"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-1 sm:p-2 rounded-full bg-transparent backdrop-blur-sm border hover:bg-background transition-colors"
           aria-label="Next slide"
         >
           <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />

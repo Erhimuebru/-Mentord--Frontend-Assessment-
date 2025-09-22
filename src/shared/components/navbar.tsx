@@ -23,14 +23,14 @@ const NavBar = () => {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex space-x-3 text-sm text-gray-600">
-              <Link href="/" className="hover:underline">
+            <nav className="hidden md:flex space-x-3 text-sm gap-10 text-gray-600">
+              <Link href="/" className="hover:underline font-semibold">
                 Home
               </Link>
-              <Link href="/products" className="hover:underline">
+              <Link href="/products" className="hover:underline font-semibold">
                 Products
               </Link>
-              <Link href="/cart" className="hover:underline">
+              <Link href="/cart" className="hover:underline font-semibold">
                 Cart
               </Link>
             </nav>

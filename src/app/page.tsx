@@ -38,7 +38,7 @@ export default function HomePage() {
   }, [products]);
 
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <div className="min-h-screen flex flex-col relative text-[#0c132c]">
       {loading && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black backdrop-blur-sm">
           <Loading />
@@ -47,8 +47,8 @@ export default function HomePage() {
 
       <HeroSection />
 
-      <section className="pr-6 pl-6">
-        <div className="max-w-7xl mx-auto mb-14 -mt-20 sm:mt-0">
+      <section className="pr-6 pl-6 mt-10">
+        <div className="max-w-7xl mx-auto mb-14">
           {!loading && (
             <div className="space-y-12">
               {Object.entries(productsByCategory).map(([category, items]) => (

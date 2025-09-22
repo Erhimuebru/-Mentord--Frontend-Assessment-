@@ -49,7 +49,7 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-8">Product not found</div>
+      <div className="max-w-4xl mx-auto px-4 py-8 text-[#0c132c]">Product not found</div>
     );
   }
 
@@ -62,7 +62,7 @@ export default function ProductPage() {
   };
 
   return (
-    <div className="max-w-[1440px] mx-auto px-4 py-8 mt-28">
+    <div className="max-w-[1440px] mx-auto px-4 py-8 mt-28 text-[#0c132c]">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
         {/* Product Image */}
         <div className="flex items-center justify-center">
@@ -78,11 +78,11 @@ export default function ProductPage() {
         {/* Product Details */}
         <div>
           <h1 className="text-2xl font-semibold mb-2">{product.title}</h1>
-          <div className="text-gray-200 mb-4">{product.category}</div>
+          <div className="text-[#0c132c] mb-4">{product.category}</div>
           <div className="text-3xl font-bold mb-4">
             ₦{product.price.toLocaleString('en-NG', { minimumFractionDigits: 2 })}
           </div>
-          <p className="text-gray-100 mb-6">{product.description}</p>
+          <p className="text-[#0c132c] mb-6">{product.description}</p>
 
           <div className="flex gap-3">
             <Button
