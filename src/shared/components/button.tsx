@@ -1,7 +1,7 @@
 import React from "react";
 
 interface ButtonProps {
-  text: string;
+  text?: string;
   children?: React.ReactNode;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
@@ -10,7 +10,7 @@ interface ButtonProps {
   disabled?: boolean;
   className?: string;
   style?: React.CSSProperties;
-  icon?: React.ElementType;
+  icon?: React.ReactNode;
 }
 
 const buttonStyles = {
@@ -28,28 +28,30 @@ const buttonStyles = {
 
 const Button: React.FC<ButtonProps> = ({
   text,
+  children,
   onClick,
   type = "button",
   variant = "primary",
   disabled = false,
   className = "",
   style = {},
-  icon: Icon = null,
+  icon,
 }) => {
   const baseStyles = `${buttonStyles[variant]} ${
     disabled ? buttonStyles.disabled : ""
-  } `;
+  } ${className}`;
 
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={(className)}
+      className={baseStyles}
       style={style}
     >
-      {text}
-      {Icon && <Icon style={{ marginLeft: "8px" }} />}
+      {text && <span>{text}</span>}
+      {children}
+      {icon && <span className="ml-2">{icon}</span>}
     </button>
   );
 };
