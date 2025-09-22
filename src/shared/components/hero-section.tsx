@@ -32,7 +32,6 @@ export function HeroSection() {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length)
     }, 4000)
-
     return () => clearInterval(timer)
   }, [slides.length])
 
@@ -40,45 +39,40 @@ export function HeroSection() {
     setCurrent(index)
   }
 
-  const nextSlide = () => {
-    setCurrent((prev) => (prev + 1) % slides.length)
-  }
-
-  const prevSlide = () => {
-    setCurrent((prev) => (prev - 1 + slides.length) % slides.length)
-  }
+  const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length)
+  const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length)
 
   return (
-    <section className="min-h-[80vh] flex items-center justify-center px-6 md:px-12 relative">
-      <div className="max-w-4xl mx-auto">
+    <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center px-4 sm:px-6 md:px-12 -mt-16 sm:mt-0">
+      <div className="max-w-7xl mx-auto w-full">
         <div className="relative overflow-hidden">
+          {/* Slides wrapper */}
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${current * 100}%)` }}
           >
             {slides.map((slide, index) => (
-              <div key={index} className="w-full flex-shrink-0">
+              <div key={index} className="w-full flex-shrink-0 px-2 sm:px-6 mt-0 sm:mt-32">
                 <div className="text-center">
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-light leading-tight text-balance mb-8">
+                  {/* Title */}
+                  <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-light leading-tight text-balance mb-6 sm:mb-8">
                     {slide.title}
                   </h1>
 
-                  <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-12">
+                  {/* Description */}
+                  <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-12 px-2">
                     {slide.description}
                   </p>
 
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  {/* Button */}
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
                     <Link
                       href="/products"
-                      className="inline-flex items-center space-x-2 px-8 py-3 text-base bg-foreground text-background rounded-md hover:bg-foreground/90 transition-colors"
+                      className="inline-flex items-center space-x-2 px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base bg-foreground text-background rounded-md hover:bg-foreground/90 transition-colors"
                     >
                       <span>{slide.buttonText}</span>
                       <ArrowRight className="w-4 h-4" />
                     </Link>
-
-                    {/* <button className="px-8 py-3 text-base bg-transparent border border-border rounded-md hover:bg-muted transition-colors">
-                      Learn More
-                    </button> */}
                   </div>
                 </div>
               </div>
@@ -86,28 +80,31 @@ export function HeroSection() {
           </div>
         </div>
 
+        {/* Prev button */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/80 backdrop-blur-sm border hover:bg-background transition-colors"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-1 sm:p-2 rounded-full bg-background/80 backdrop-blur-sm border hover:bg-background transition-colors"
           aria-label="Previous slide"
         >
-          <ChevronLeft className="w-5 h-5" />
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
+        {/* Next button */}
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/80 backdrop-blur-sm border hover:bg-background transition-colors"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-1 sm:p-2 rounded-full bg-background/80 backdrop-blur-sm border hover:bg-background transition-colors"
           aria-label="Next slide"
         >
-          <ChevronRight className="w-5 h-5" />
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
-        <div className="flex justify-center space-x-2 mt-8">
+        {/* Indicators */}
+        <div className="flex justify-center space-x-1 sm:space-x-2 mt-6 sm:mt-8">
           {slides.map((_, index) => (
             <button
               key={index}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === current ? "bg-foreground w-8" : "bg-[#fff] hover:bg-muted-foreground/50 w-2"
+              className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 ${
+                index === current ? "bg-foreground w-6 sm:w-8" : "bg-[#fff] hover:bg-muted-foreground/50 w-2"
               }`}
               onClick={() => goToSlide(index)}
               aria-label={`Go to slide ${index + 1}`}
