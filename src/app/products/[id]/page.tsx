@@ -10,6 +10,7 @@ import { Product } from '@/service/types/products';
 import Loading from '@/shared/components/loader';
 import Button from '@/shared/components/button';
 import { RootState } from '@/store';
+import { motion, Variants } from 'framer-motion';
 
 export default function ProductPage() {
   const { id } = useParams<{ id: string }>();
@@ -49,7 +50,9 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-8 text-[#0c132c]">Product not found</div>
+      <div className="max-w-4xl mx-auto px-4 py-8 text-[#0c132c]">
+        Product not found
+      </div>
     );
   }
 
@@ -61,11 +64,43 @@ export default function ProductPage() {
     }
   };
 
+  // Framer Motion variants
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        when: 'beforeChildren',
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.17, 0.67, 0.83, 0.67] }
+    }
+  };
+
   return (
-    <div className="max-w-[1440px] mx-auto px-4 py-8 mt-28 text-[#0c132c]">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+    <motion.div
+      className="max-w-[1440px] mx-auto px-4 py-8 mt-28 text-[#0c132c]"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start"
+        variants={containerVariants}
+      >
         {/* Product Image */}
-        <div className="flex items-center justify-center">
+        <motion.div
+          className="flex items-center justify-center"
+          variants={itemVariants}
+        >
           <Image
             src={product.image}
             alt={product.title}
@@ -73,10 +108,10 @@ export default function ProductPage() {
             height={160}
             className="max-h-80 object-contain"
           />
-        </div>
+        </motion.div>
 
         {/* Product Details */}
-        <div>
+        <motion.div variants={itemVariants} className="md:col-span-2">
           <h1 className="text-2xl font-semibold mb-2">{product.title}</h1>
           <div className="text-[#0c132c] mb-4">{product.category}</div>
           <div className="text-3xl font-bold mb-4">
@@ -84,21 +119,21 @@ export default function ProductPage() {
           </div>
           <p className="text-[#0c132c] mb-6">{product.description}</p>
 
-          <div className="flex gap-3">
+          <motion.div variants={itemVariants} className="flex gap-3">
             <Button
               variant="primary"
               onClick={handleCartToggle}
               className={`px-4 py-2 rounded cursor-pointer whitespace-nowrap ${
                 isInCart
-                  ? 'bg-red-600 hover:bg-red-700 hover:text-red-500'
-                  : 'bg-indigo-600 hover:bg-indigo-700 hover:text-indigo-500'
-              }`}
+                  ? 'bg-red-600 hover:bg-red-700'
+                  : 'bg-indigo-600 hover:bg-indigo-700'
+              } text-white`}
             >
               {isInCart ? 'Remove from Cart' : 'Add to Cart'}
             </Button>
-          </div>
-        </div>
-      </div>
-    </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 }
